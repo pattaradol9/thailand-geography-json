@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `isPrimary` - `true` for the primary (majority-area) code
   - `detailTh` / `detailEn` - Thai/English description of the area (whole subdistrict, Moo (village) numbers, village names, or specific house/soi ranges)
 - 97 subdistricts are served by more than one postal code and list all of their codes; the remaining 7,339 carry a single-element list. 38 subdistricts had their primary `postalCode` corrected to the code that covers most of the subdistrict (e.g. Ao Nang 81000 → 81180, Koh Tao 84280 → 84360, Nong Thale 81000 → 81180).
+- Added `docs/thailand-post-poster-2561.pdf` — the source document (Thailand Post poster, status May 2018) — and `src/multi-postal-codes.json`, an audit list of the 97 multi-postal-code subdistricts including the original poster lines (`sourceLines`) each entry was derived from.
 - Updated `README.md` to document the new key.
 
 ### Changed
