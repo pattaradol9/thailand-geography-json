@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-10-07
+
+### Added
+
+- `postalCodes` key on every `subdistricts.json` and `geography.json` record, listing all postal codes of the subdistrict so it can be rendered directly as a select dropdown (primary code first), based on the official Thailand Post poster "รหัสไปรษณีย์ทั่วประเทศ จำแนกตามท้องที่" (status May 2018). Each entry carries:
+  - `postalCode` - postal code used in a specific part of the subdistrict
+  - `isPrimary` - `true` for the primary (majority-area) code
+  - `detailTh` / `detailEn` - Thai/English description of the area (whole subdistrict, Moo (village) numbers, village names, or specific house/soi ranges)
+- 97 subdistricts are served by more than one postal code and list all of their codes; the remaining 7,339 carry a single-element list. 38 subdistricts had their primary `postalCode` corrected to the code that covers most of the subdistrict (e.g. Ao Nang 81000 → 81180, Koh Tao 84280 → 84360, Nong Thale 81000 → 81180).
+- Updated `README.md` to document the new key.
+
+### Changed
+
+- `postalCode` now documents the primary (majority) postal code of a subdistrict. This remains fully backward-compatible: records without multiple postal codes are unchanged.
+
 ## [1.1.3] - 2023-05-28
 
 ### Added

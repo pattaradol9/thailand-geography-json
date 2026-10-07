@@ -102,7 +102,12 @@ Get to know the keys used in the JSON files:
 - `subdistrictCode` - Subdistrict code (6-digit number).
 - `subdistrictNameEn` - Subdistrict name in English (string).
 - `subdistrictNameTh` - Subdistrict name in Thai (string).
-- `postalCode` - Postal code (5-digit number).
+- `postalCode` - The primary postal code, i.e. the code that applies to most of the subdistrict (5-digit number).
+- `postalCodes` - List of **every** postal code of the subdistrict, so it can be rendered directly as a select dropdown. The primary code is always the first element. Every record has this key; subdistricts served by a single code have a one-element list. Based on the official Thailand Post poster "รหัสไปรษณีย์ทั่วประเทศ จำแนกตามท้องที่" (May 2018). Each entry:
+  - `postalCode` - Postal code used in a specific part of the subdistrict (5-digit number).
+  - `isPrimary` - `true` for the primary (majority-area) code, `false` otherwise (boolean).
+  - `detailTh` - Thai description of the area using this code — the whole subdistrict, village (หมู่ที่) numbers, village names, or specific house/soi ranges (string).
+  - `detailEn` - English description of the same area (string).
 
 ## Sample Data
 
@@ -143,6 +148,34 @@ Check out sample data from each JSON file:
   "subdistrictNameEn": "Phra Borom Maha Ratchawang",
   "subdistrictNameTh": "พระบรมมหาราชวัง",
   "postalCode": 10200
+}
+```
+
+A subdistrict served by more than one postal code lists all of them in `postalCodes`, e.g. Ao Nang in Krabi where Moo 7-8 use a different code than the rest of the subdistrict:
+
+```json
+{
+  "id": 6530,
+  "provinceCode": 81,
+  "districtCode": 8101,
+  "subdistrictCode": 810116,
+  "subdistrictNameEn": "Ao Nang",
+  "subdistrictNameTh": "อ่าวนาง",
+  "postalCode": 81180,
+  "postalCodes": [
+    {
+      "postalCode": 81180,
+      "isPrimary": true,
+      "detailTh": "ม.1 - 6",
+      "detailEn": "Moo 1 - 6 (majority area)"
+    },
+    {
+      "postalCode": 81210,
+      "isPrimary": false,
+      "detailTh": "ม.7 - 8",
+      "detailEn": "Moo 7 - 8"
+    }
+  ]
 }
 ```
 
